@@ -8,12 +8,22 @@
 double rotate_y = 0, rotate_x = 0;
 GLuint texture;
 
+static int flag;
+
 float ver[4][3] = {
         {-2.0, -2.0, 0.5},
         {-2.0, 2.0, 0.5},
         {2.0, 2.0, 0.5},
         {2.0, -2.0, 0.5},
 };
+
+
+void my_key(unsigned char ch, int x, int y)
+{
+	if(ch)
+		exit(0);
+}
+
 
 void quad(int a,int b,int c,int d)
 {
@@ -58,11 +68,19 @@ void display()
         glutSwapBuffers();
 }
 
-void get_texture()
+/*
+void my_key(unsigned char ch, int x, int y)
+{
+	if(ch)
+		exit(0);
+}
+*/
+
+void get_texture(char *val)
 {
         texture = SOIL_load_OGL_texture
                 (
-                        "2.png",
+                        val,
                         SOIL_LOAD_AUTO,
                         SOIL_CREATE_NEW_ID,
                         SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
@@ -72,12 +90,14 @@ void get_texture()
 int main(int argc, char *argv[])
 {
         glutInit(&argc, argv);
+	
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
         glutInitWindowSize(HEIGHT, WIDTH);
         glutCreateWindow("Test Texture???");
         glutDisplayFunc(display);
+	glutKeyboardFunc(my_key);
         glEnable(GL_DEPTH_TEST);
-        get_texture();
+        get_texture(argv[1]);
         glutMainLoop();
         return 0;
 }

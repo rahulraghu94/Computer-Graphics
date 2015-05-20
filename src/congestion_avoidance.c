@@ -74,11 +74,52 @@ void TheBackButtonCallBack()
 
 void disp_data()
 {
-	
+	switch (page)
+	{
+	case 1:
+		system("./draw a.bmp");
+		break;
+
+	case 2:
+		system("./draw 2.png");
+		break;
+
+	case 3:
+		system("./draw 3.png");
+		break;
+
+	case 4:
+		system("./draw 4.png"); //Image left to upload
+		break;
+		
+	}
 }
 
-Button my_exit = {70, 150, 200, 400, 0, 0, "Back", TheBackButtonCallBack};
-Button disp_data_img = {1100, 150, 200, 400, 0, 0, "Information", disp_data};
+void animate_buff()
+{
+	switch (page)
+	{
+	case 1:
+		//do something;
+
+	case 2:
+		system("./reno");
+		break;
+
+	case 3:
+		system("./bic");
+		break;
+
+	case 4:
+		system("./both");
+		break;
+		
+	}
+}
+
+Button my_exit = {200+200, 180, 150, 30, 0, 0, "Back", TheBackButtonCallBack};
+Button disp_data_img = {800, 180, 150, 30, 0, 0, "Information", disp_data};
+Button animate = {400+200, 180, 150, 30, 0, 0, "Simulate", animate_buff};
 /*----------------------------------------------------------------------------------------
  *	This is a list callback functions. Notice that it's type is the same
  *	an the ButtonCallback type. We can assign a pointer to this function which
@@ -338,9 +379,9 @@ void Init()
 void draw_main()
 {
 	char s[] = "TCP Congestion Avoidance Algorithms";
-	//glColor3f (0.258824, 0.435294, 0.258824);
-	//Font(GLUT_BITMAP_TIMES_ROMAN_24, s, 350, 50);
-	//glFlush();
+	glColor3f (0.258824, 0.435294, 0.258824);
+	Font(GLUT_BITMAP_TIMES_ROMAN_24, s, 450, 300);
+	glFlush();
 	glClearColor(1.0, 1.0, 1.0, 0.0);
 	ButtonDraw(&MyButton1);
 	ButtonDraw(&MyButton2);
@@ -350,33 +391,55 @@ void draw_main()
 }
 
 void draw_tcp()
-{	
+{
+	char s[] = "TCP Congestion Avoidance Algorithms";
+	glColor3f (0.258824, 0.435294, 0.258824);
+	Font(GLUT_BITMAP_TIMES_ROMAN_24, s, 450, 300);
 	ButtonDraw(&my_exit);
 	ButtonDraw(&disp_data_img);
+	ButtonDraw(&animate);
 	glFlush();	
 }
 
 void draw_reno()
 {
-	system("./reno.o");
+	char s[] = "TCP Reno Congestion Avoidance Algorithms";
+	glColor3f (0.258824, 0.435294, 0.258824);
+	Font(GLUT_BITMAP_TIMES_ROMAN_24, s, 450, 300);
+	ButtonDraw(&my_exit);
+	ButtonDraw(&disp_data_img);
+	ButtonDraw(&animate);
+	//system("./reno");
 	glFlush();
 }
 
 void draw_bic()
 {
-	system("./bic.o");
+	char s[] = "TCP BIC Congestion Avoidance Algorithms";
+	glColor3f (0.258824, 0.435294, 0.258824);
+	Font(GLUT_BITMAP_TIMES_ROMAN_24, s, 450, 300);
+	ButtonDraw(&my_exit);
+	ButtonDraw(&disp_data_img);
+	ButtonDraw(&animate);
+	//system("./bic");
 	glFlush();
 }
 
 void draw_both()
 {
-	system("./both.o");
+	char s[] = "Hetrogenous Reno/BIC Congestion Avoidance Algorithms";
+	glColor3f (0.258824, 0.435294, 0.258824);
+	Font(GLUT_BITMAP_TIMES_ROMAN_24, s, 445, 300);
+	ButtonDraw(&my_exit);
+	ButtonDraw(&disp_data_img);
+	ButtonDraw(&animate);
+	//system("./both");
 	glFlush();	
 }
 
 void Display()
 {
-	char s[] = "TCP Congestion Avoidance Algorithms";
+	//char s[] = "TCP Congestion Avoidance Algorithms";
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
 	glDisable(GL_DEPTH_TEST);
@@ -389,7 +452,7 @@ void Display()
 	glLoadIdentity();
 
 	glColor3f (0.258824, 0.435294, 0.258824);
-	Font(GLUT_BITMAP_TIMES_ROMAN_24, s, 450, 150);
+	//Font(GLUT_BITMAP_TIMES_ROMAN_24, s, 450, 150);
 	glFlush();
 
 	switch(page)
@@ -462,6 +525,8 @@ void MouseButton(int button,int state,int x, int y)
 			ButtonPress(&MyButton4, x, y);
 			ButtonPress(&MyButton5, x, y);
 			ButtonPress(&my_exit, x, y);
+			ButtonPress(&animate, x, y);
+			ButtonPress(&disp_data_img, x, y);
 		case GLUT_MIDDLE_BUTTON:
 			TheMouse.mmb = 1;
 			break;
@@ -482,6 +547,8 @@ void MouseButton(int button,int state,int x, int y)
 			ButtonRelease(&MyButton4, x, y);
 			ButtonRelease(&MyButton5, x, y);
 			ButtonRelease(&my_exit, x, y);
+			ButtonRelease(&animate, x, y);
+			ButtonRelease(&disp_data_img, x, y);
 			break;
 		case GLUT_MIDDLE_BUTTON:
 			TheMouse.mmb = 0;
@@ -515,6 +582,8 @@ void MouseMotion(int x, int y)
 	ButtonPassive(&MyButton4, x, y);
 	ButtonPassive(&MyButton5, x, y);
 	ButtonPassive(&my_exit, x, y);
+	ButtonPassive(&animate, x, y);
+	ButtonPassive(&disp_data_img, x, y);
 
 	glutPostRedisplay();
 }
@@ -539,6 +608,8 @@ void MousePassiveMotion(int x, int y)
 	ButtonPassive(&MyButton4, x, y);
 	ButtonPassive(&MyButton5, x, y);
 	ButtonPassive(&my_exit, x, y);
+	ButtonPassive(&animate, x, y);
+	ButtonPassive(&disp_data_img, x, y);
 }
 
 
