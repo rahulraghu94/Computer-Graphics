@@ -630,8 +630,10 @@ void idle_test()
 	}
 
 	if(reduce_by == 140)
-		system("pause");
-
+	{
+		sleep(5);
+		reduce_by = 70;
+	}
 	glutPostRedisplay();
 }
 

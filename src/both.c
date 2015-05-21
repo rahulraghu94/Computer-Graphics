@@ -504,7 +504,7 @@ void computer()						      		// to draw the sender and receiver computers
 
 }
 
-void window_prog_sender1_both(int a)
+void window_prog_sender1_both(float a)
 {
 	int width = 80, height = 10, x = 170, y = 90;
 	float progress, value = a, max_value = 140;
@@ -532,7 +532,7 @@ void window_prog_sender1_both(int a)
 }
 
 
-void window_prog_sender2_both(int a)
+void window_prog_sender2_both(float a)
 {
 	int width = 80, height = 10, x = 170, y = 350;
 	float progress, value = a, max_value = 140;
@@ -615,6 +615,7 @@ void fill_rect2_both(int a, int high)
 static int progress1 = 0, progress2 = 0, height1 = 35, height2 = 35;
 static int updater = 5, count = 0;
 static int cur, prev;
+static float p1, p2;
 
 static int vec[] = {};
 
@@ -634,6 +635,9 @@ void idle()
 		progress1++;
 		progress2++;
 
+		p1++;
+		p2++;
+
 		cur++;
 
 		if(progress1 + progress2 > 280)
@@ -648,9 +652,20 @@ void idle()
 			cur = (prev + cur) /2;
 			prev = cur;
 			
-			prev = cur;			
+			prev = cur;
+
+			p1 = p1 + 0.5;
+			p2 = p2 - 0.5;
 		}
-				
+/*
+		else if(progress1 + progress2 == 280)
+		{
+			height1 = 35;
+			height2 = 35;
+			progress1 = 0;
+			progress2 = 0;
+		}
+*/				
 		count ++;
 	}
 	
@@ -663,8 +678,8 @@ void display()
 	computer();
 	glFlush();
 
-	window_prog_sender1_both(progress1 + height1);
-	window_prog_sender2_both(progress2 + height2);
+	window_prog_sender1_both(p1 / 2);
+	window_prog_sender2_both(p2 / 2);
 	fill_rect1_both(progress1, height1);
 	fill_rect2_both(progress2, height2);
 
