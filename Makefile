@@ -1,6 +1,6 @@
 LIBS = -lGL -lGLU -lglut -lSOIL
 
-all : src/reno src/bic src/both src/draw_bmp src/congestion_avoidance.c
+all : reno bic both draw_bmp congestion_avoidance.c
 	@mkdir build
 
 reno : src/reno.c
