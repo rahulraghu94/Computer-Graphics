@@ -15,7 +15,7 @@ both : src/both.c
 draw_bmp : src/draw_bmp.c
 	gcc src/draw_bmp.c $(LIBS) -o src/draw_bmp.o
 
-congestion_avoidance.c : src/congestion_avoidance.c
+congestion_avoidance : src/congestion_avoidance.c
 	gcc src/congestion_avoidance.c $(LIBS) -o src/congestion_avoidance.o
 
 clean:
