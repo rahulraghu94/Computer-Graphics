@@ -569,6 +569,18 @@ void window_prog_sender2_reno(int a)
 	glFlush();
 }
 
+
+void draw_packet(float x, float y)
+{
+	glColor3f(1.0, 0.0, 0.0);
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(x, y);
+	glVertex2f(x+5, y);
+	glVertex2f(x+5, y+5);
+	glVertex2f(x, y+5);
+	glEnd();
+}
+
 void fill_rect1_reno(int a)
 {
 	int width = 180, height = 35, x = 140, y = 230;
@@ -623,16 +635,49 @@ void fill_rect2_reno(int a)
 	glFlush();
 }
 
+static float pac_x = 107.5, pac_y = 325;
+static float px = 107.5, py = 190;
+
 void idle_test()
 {
 	if(++progress == 139)
 		progress = 70;
 
+	if (pac_x == 107.5 && pac_y <= 325 && pac_y >290)
+		pac_y--;
+
+	else if (pac_y == 290 )
+		pac_x ++;
+
+	if(pac_y == 290 && pac_x == 140.5)
+	{
+		pac_x = 107.5;
+		pac_y = 325;
+	}
+
+	if(px == 107.5 && py <=240 && py >= 190)
+		py++;
+
+	else if (py == 241)
+		px ++;	
+	
+	if (px >= 140.5 && py == 241)
+	{
+	
+		px = 107.5;
+		py = 190;
+	}
+	
 	glutPostRedisplay();
 }
 
+
+
 void display()
 {
+	glClearColor(1.0, 1.0, 1.0, 1.0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 	computer();
 	glFlush();
 
@@ -641,6 +686,11 @@ void display()
 	fill_rect1_reno(progress);
 	fill_rect2_reno(progress);
 
+	glPushMatrix();
+	draw_packet(px, py);
+	draw_packet(pac_x, pac_y);
+	glutSwapBuffers();
+	glPopMatrix();
 	glFlush();
 }
 /*
@@ -682,14 +732,16 @@ void display_reno(void)
 int main(int argc, char *argv[])
 {
 	glutInit(&argc,argv);
-	glutInitDisplayMode(GLUT_SINGLE|GLUT_RGBA);
+	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA);
+	//glutInitDisplayMode(GLUT_SINGLE|GLUT_RGBA);
   	glutInitWindowPosition(0,0);
 	glutInitWindowSize(1800,1000);
-	glutCreateWindow("");
+	glutCreateWindow("TCP RENO");
 	glutDisplayFunc(display);
 	glutIdleFunc(idle_test);
 	glutKeyboardFunc(mykey);
 	init();
+	glEnable(GL_DEPTH_TEST);
 	glutMainLoop();
 	
 	return 0;  

@@ -370,6 +370,17 @@ void ButtonDraw(Button *b)
 	}
 }
 
+void reshape (int w, int h)
+{
+   glViewport (0, 0, (GLsizei) w, (GLsizei) h); 
+   glMatrixMode (GL_PROJECTION);
+   glLoadIdentity ();
+   gluPerspective(60.0, (GLfloat) w/(GLfloat) h, 1.0, 20.0);
+   glMatrixMode(GL_MODELVIEW);
+   glLoadIdentity();
+   gluLookAt (0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+}
+
 void Init()
 {
 	glEnable(GL_LIGHT0);
