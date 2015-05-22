@@ -629,7 +629,7 @@ void fill_rect2_both(int a, int high)
 static int progress1 = 0, progress2 = 0, height1 = 35, height2 = 35;
 static int updater = 5, count = 0;
 static int cur, prev;
-static float p1, p2;
+static float p1, p2, p1up = 18, p2up = 18;
 
 static int vec[] = {};
 
@@ -649,8 +649,8 @@ void idle()
 		progress1++;
 		progress2++;
 
-		p1++;
-		p2++;
+		p1 += p1up;
+		p2 += p2up;
 
 		cur++;
 
@@ -668,8 +668,11 @@ void idle()
 			
 			prev = cur;
 
-			p1 = p1 + 0.5;
-			p2 = p2 - 0.5;
+			p1 = p1 / 2;
+			p2 = p2 / 2;
+
+			p1up += 1;
+			p2up -= 1;
 
 			printf("%d", count++);
 		}
@@ -721,8 +724,8 @@ void display()
 	computer();
 	glFlush();
 
-	window_prog_sender1_both(p1 / 2);
-	window_prog_sender2_both(p2 / 2);
+	window_prog_sender1_both(p1 / 36);
+	window_prog_sender2_both(p2 / 36);
 	fill_rect1_both(progress1, height1);
 	fill_rect2_both(progress2, height2);
 
