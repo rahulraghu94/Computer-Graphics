@@ -559,6 +559,20 @@ void window_prog_sender2_both(float a)
 	
 }
 
+void draw_packet(float x, float y)
+{
+	glColor3f(1.0, 0.0, 0.0);
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(x, y);
+	glVertex2f(x+5, y);
+	glVertex2f(x+5, y+5);
+	glVertex2f(x, y+5);
+	glEnd();
+}
+
+static float pac_x = 107.5, pac_y = 325;
+static float px = 107.5, py = 190;
+
 void fill_rect1_both(int a, int low)
 {
 	int width = 180, height = low, x = 140, y = 230;
@@ -656,7 +670,34 @@ void idle()
 
 			p1 = p1 + 0.5;
 			p2 = p2 - 0.5;
+
+			printf("%d", count++);
 		}
+
+		if (pac_x == 107.5 && pac_y <= 325 && pac_y >290)
+		pac_y--;
+
+	else if (pac_y == 290 )
+		pac_x ++;
+
+	if(pac_y == 290 && pac_x == 140.5)
+	{
+		pac_x = 107.5;
+		pac_y = 325;
+	}
+
+	if(px == 107.5 && py <=240 && py >= 190)
+		py++;
+
+	else if (py == 241)
+		px ++;	
+	
+	if (px >= 140.5 && py == 241)
+	{
+	
+		px = 107.5;
+		py = 190;
+	}
 /*
 		else if(progress1 + progress2 == 280)
 		{
@@ -675,6 +716,8 @@ void idle()
 
 void display()
 {
+	glClearColor(1.0, 1.0, 1.0, 1.0);
+	glClear(GL_COLOR_BUFFER_BIT);
 	computer();
 	glFlush();
 
@@ -683,13 +726,19 @@ void display()
 	fill_rect1_both(progress1, height1);
 	fill_rect2_both(progress2, height2);
 
+	glPushMatrix();
+	draw_packet(px, py);
+	draw_packet(pac_x, pac_y);
+	glutSwapBuffers();
+	glPopMatrix();
+
 	glFlush();
 }
 
 int main(int argc, char *argv[])
 {
 	glutInit(&argc,argv);
-	glutInitDisplayMode(GLUT_SINGLE|GLUT_RGBA);
+	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA);
   	glutInitWindowPosition(0,0);
 	glutInitWindowSize(1800,1000);
 	glutCreateWindow("");

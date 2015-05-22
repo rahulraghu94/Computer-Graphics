@@ -77,15 +77,15 @@ void disp_data()
 	switch (page)
 	{
 	case 1:
-		system("./draw a.bmp");
+		system("./draw ~/Project_final/res/a.bmp");
 		break;
 
 	case 2:
-		system("./draw 2.png");
+		system("./draw ~/Project_final/res/2.png");
 		break;
 
 	case 3:
-		system("./draw 3.png");
+		system("./draw ~/Project_final/res/3.png");
 		break;
 
 	case 4:

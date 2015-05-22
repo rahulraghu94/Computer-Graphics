@@ -5,9 +5,8 @@
 #include <unistd.h>
 
 void *currentfont;
-static int progress_check = 0;
 
-void *fonts_bic[]=
+void *fonts_both[]=
 {
 GLUT_BITMAP_9_BY_15,
 GLUT_BITMAP_TIMES_ROMAN_10,
@@ -16,19 +15,19 @@ GLUT_BITMAP_HELVETICA_18,
 GLUT_BITMAP_HELVETICA_12
 };
 
-void myKey(unsigned char key, int x, int y)
+void mykey(unsigned char key, int x, int y)
 {
 	if( key )
 		exit(0);
 }
 
-void setFont_bic(void *font_bic)
+void setFont_both(void *font_both)
 {
-	currentfont=font_bic;
+	currentfont=font_both;
 }
 
 
-void drawstring_bic(float x,float y,float z,const char *string)
+void drawstring_both(float x,float y,float z,const char *string)
 {
 	const char *c;
 	glRasterPos3f(x,y,z);
@@ -39,44 +38,49 @@ void drawstring_bic(float x,float y,float z,const char *string)
 		glutBitmapCharacter(currentfont,*c);
 	}
 }
-/*
-void myInit()
+
+
+void init()
 {
-	glClearColor(1.0,1.0,1.0,0.0);
-	gluOrtho2D(0.0,500.0,0.0,500.0);
+	glClearColor(1.0, 1.0, 1.0, 0.0);
+	gluOrtho2D(0.0, 500.0, 0.0, 500.0);
 	glMatrixMode(GL_PROJECTION);
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
-*/
-void computer()									// to draw the sender and receiver computers
+
+
+void computer()						      		// to draw the sender and receiver computers
 {
 
+
 	glColor3f(0.0f,0.0f,0.0f);
-	setFont_bic(GLUT_BITMAP_HELVETICA_18);
- 	drawstring_bic(95.0,420.0,1.0,"SENDER");
+	setFont_both(GLUT_BITMAP_HELVETICA_18);
+ 	drawstring_both(95.0,420.0,1.0,"SENDER");
 
  	glColor3f(0.0f,0.0f,0.0f);
-	setFont_bic(GLUT_BITMAP_HELVETICA_18);
- 	drawstring_bic(95.0,420.0-250,1.0,"SENDER");
+	setFont_both(GLUT_BITMAP_HELVETICA_18);
+ 	drawstring_both(95.0,420.0-250,1.0,"SENDER");
 
 	glColor3f(0.0f,0.0f,0.0f);
-	setFont_bic(GLUT_BITMAP_HELVETICA_18);
- 	drawstring_bic(345.0,420.0-135,1.0,"RECEIVER");
+	setFont_both(GLUT_BITMAP_HELVETICA_18);
+ 	drawstring_both(345.0,420.0-135,1.0,"RECEIVER");
+
+		glColor3f(0.0f,0.0f,0.0f);
+	setFont_both(GLUT_BITMAP_HELVETICA_18);
+ 	drawstring_both(185.0,380.0,1.0,"SENDER CONGESTION WINDOW, RENO");
 
 	glColor3f(0.0f,0.0f,0.0f);
-	setFont_bic(GLUT_BITMAP_HELVETICA_18);
- 	drawstring_bic(185.0,380.0,1.0,"SENDER CONGESTION WINDOW, BIC");
+	setFont_both(GLUT_BITMAP_HELVETICA_18);
+ 	drawstring_both(185.0,60.0,1.0,"SENDER CONGESTION WINDOW, BIC");
 
 	glColor3f(0.0f,0.0f,0.0f);
-	setFont_bic(GLUT_BITMAP_HELVETICA_18);
- 	drawstring_bic(185.0,60.0,1.0,"SENDER CONGESTION WINDOW, BIC");
-
-	glColor3f(0.0f,0.0f,0.0f);
-	setFont_bic(GLUT_BITMAP_HELVETICA_18);
- 	drawstring_bic(185.0,215.0,1.0,"NETWORK CHANNEL BANDWIDTH");
+	setFont_both(GLUT_BITMAP_HELVETICA_18);
+ 	drawstring_both(185.0,215.0,1.0,"NETWORK CHANNEL BANDWIDTH");
 
 	glColor3f(0.0, 0.0, 0.0);
-	setFont_bic(GLUT_BITMAP_HELVETICA_12);
-	drawstring_bic(370, 10, 1.0, "Press any key to go back after animation is complete");
+	setFont_both(GLUT_BITMAP_HELVETICA_12);
+	drawstring_both(370, 10, 1.0, "Press any key to go back after animation is complete");
 	
 	glColor3f(0.137255, 0.556863, 0.137255);//monitor
 	glBegin(GL_LINE_LOOP);
@@ -500,9 +504,9 @@ void computer()									// to draw the sender and receiver computers
 
 }
 
-void window_prog_sender1_bic(int a)
+void window_prog_sender1_both(float a)
 {
-	int width = 80, height = 15, x = 170, y = 90;
+	int width = 80, height = 10, x = 170, y = 90;
 	float progress, value = a, max_value = 140;
 	
 	glColor3f(0.0, 0.0, 0.0);
@@ -528,9 +532,9 @@ void window_prog_sender1_bic(int a)
 }
 
 
-void window_prog_sender2_bic(int a)
+void window_prog_sender2_both(float a)
 {
-	int width = 80, height = 15, x = 170, y = 350;
+	int width = 80, height = 10, x = 170, y = 350;
 	float progress, value = a, max_value = 140;
 	
 	glColor3f(0.0, 0.0, 0.0);
@@ -569,9 +573,9 @@ void draw_packet(float x, float y)
 static float pac_x = 107.5, pac_y = 325;
 static float px = 107.5, py = 190;
 
-void fill_rect1_bic(int a)
+void fill_rect1_both(int a, int low)
 {
-	int width = 180, height = 35, x = 140, y = 230;
+	int width = 180, height = low, x = 140, y = 230;
 	float progress, value = a, max_value = 140;
 	
 	glColor3f(0.0, 0.0, 0.0);
@@ -595,9 +599,9 @@ void fill_rect1_bic(int a)
 	glEnd();
 }
 
-void fill_rect2_bic(int a)
+void fill_rect2_both(int a, int high)
 {
-	int width = 180, height = 35, x = 140, y = 300;
+	int width = 180, height = high, x = 140, y = 300;
 	float progress, value = a, max_value = 140;
 	
 	glColor3f(0.0, 0.0, 0.0);
@@ -621,35 +625,56 @@ void fill_rect2_bic(int a)
 	glEnd();
 
 }
- 
-int reduce_by = 70;
 
-void init()
+static int progress1 = 0, progress2 = 0, height1 = 35, height2 = 35;
+static int updater = 5, count = 0;
+static int cur, prev;
+static float p1, p2, p1up, p2up;
+
+static int vec[] = {};
+
+void print_data()
 {
-	glClearColor(1.0, 1.0, 1.0, 0.0);
-	gluOrtho2D(0.0, 500.0, 0.0, 500.0);
-	glMatrixMode(GL_PROJECTION);
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	system("clear");
+	printf("Heaight 1:%d\nHeaight 2:%d\nWindow_size1:%d\nWindow_size2:%d\nProgress sum:%d\nCount = %d\n\n", height1, height2, progress1, progress2, progress1+progress2, count);
+	printf("\n%d\n", cur/2);
 }
 
-
-
-void idle_test()
+void idle()
 {
-	if(++progress_check == 139){
+	if(height1 <= 70 && height1 >= 0){
 		
-		progress_check = reduce_by;
-		reduce_by = reduce_by + 10;
-	}
+		print_data();
+	
+		progress1++;
+		progress2++;
 
-	if(reduce_by == 140)
-	{
-		sleep(1);
-		reduce_by = 70;
-	}
+		p1++;
+		p2++;
 
-	if (pac_x == 107.5 && pac_y <= 325 && pac_y >290)
+		cur++;
+
+		if(progress1 + progress2 > 280)
+		{
+			count ++;
+			height1 = height1 + 2;
+			height2 = height2 - 2;
+
+			progress1 = (70 - updater) ;
+			progress2 = (70 + updater) ;
+
+			cur = (prev + cur) /2;
+			prev = cur;
+			
+			prev = cur;
+
+			p1 = p1 + 0.5;
+			p2 = p2 - 0.5;
+
+			printf("%d", count++);
+		}
+
+		if (pac_x == 107.5 && pac_y <= 325 && pac_y >290)
 		pac_y--;
 
 	else if (pac_y == 290 )
@@ -673,22 +698,33 @@ void idle_test()
 		px = 107.5;
 		py = 190;
 	}
-
+/*
+		else if(progress1 + progress2 == 280)
+		{
+			height1 = 35;
+			height2 = 35;
+			progress1 = 0;
+			progress2 = 0;
+		}
+*/				
+		count ++;
+	}
+	
 	glutPostRedisplay();
 }
+ 
 
-void new_display()
+void display()
 {
-
 	glClearColor(1.0, 1.0, 1.0, 1.0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT);
 	computer();
 	glFlush();
 
-	window_prog_sender1_bic(progress_check/2);
-	window_prog_sender2_bic(progress_check/2);
-	fill_rect1_bic(progress_check);
-	fill_rect2_bic(progress_check);
+	window_prog_sender1_both(p1 / 2);
+	window_prog_sender2_both(p2 / 2);
+	fill_rect1_both(progress1, height1);
+	fill_rect2_both(progress2, height2);
 
 	glPushMatrix();
 	draw_packet(px, py);
@@ -705,12 +741,11 @@ int main(int argc, char *argv[])
 	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA);
   	glutInitWindowPosition(0,0);
 	glutInitWindowSize(1800,1000);
-	glutCreateWindow("TCP BIC");
-	glutDisplayFunc(new_display);
-	//glutIdleFunc(new_display);
-	glutIdleFunc(idle_test); 
-	glutKeyboardFunc(myKey);
+	glutCreateWindow("");
+	glutDisplayFunc(display);
+	glutKeyboardFunc(mykey);
 	init();
+	glutIdleFunc(idle);
 	glutMainLoop();
 	
 	return 0;  

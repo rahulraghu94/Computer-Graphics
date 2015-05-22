@@ -1,17 +1,22 @@
-							CC=gcc
-LIBS=-lGL -lGLU -lglut
+LIBS = -lGL -lGLU -lglut -lSOIL
 
-all: src/congestion_avoidance.c bic.o reno.o both.o
-	gcc $(CFLAGS) src/congestion_avoidance.c $(LIBS) -o src/congestion_avoidance.o
+all : src/reno src/bic src/both src/draw_bmp src/congestion_avoidance.c
+	@mkdir build
 
-bic.o : src/bic.c
-	gcc  $(CFLAGS) src/bic.c $(LIBS) -o src/bic.o
+reno : src/reno.c
+	gcc src/reno.c $(LIBS) -o src/reno.o
 
-reno.o: src/reno.o
-	gcc $(CFLAGS) src/reno.c $(LIBS) -o src/reno.o
+bic : src/bic.c
+	gcc src/bic.c $(LIBS) -o src/bic.o
 
-both.o: src/reno.o
-	gcc $(CFLAGS) src/both.c $(LIBS) -o src/both.o
+both : src/both.c
+	gcc src/both.c $(LIBS) -o src/both.o
+
+draw_bmp : src/draw_bmp.c
+	gcc src/draw_bmp.c $(LIBS) -o src/draw_bmp.o
+
+congestion_avoidance.c : src/congestion_avoidance.c
+	gcc src/congestion_avoidance.c $(LIBS) -o build/congestion_avoidance.c
 
 clean:
 	-@rm -f src/*.o
