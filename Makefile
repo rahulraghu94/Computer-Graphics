@@ -1,6 +1,6 @@
 LIBS = -lGL -lGLU -lglut -lSOIL
 
-all : src/reno src/bic src/both src/draw_bmp src/congestion_avoidance.c
+all : reno bic both draw_bmp congestion_avoidance
 	@mkdir build
 
 reno : src/reno.c
@@ -16,7 +16,7 @@ draw_bmp : src/draw_bmp.c
 	gcc src/draw_bmp.c $(LIBS) -o src/draw_bmp.o
 
 congestion_avoidance.c : src/congestion_avoidance.c
-	gcc src/congestion_avoidance.c $(LIBS) -o build/congestion_avoidance.c
+	gcc src/congestion_avoidance.c $(LIBS) -o src/congestion_avoidance.o
 
 clean:
 	-@rm -f src/*.o

@@ -479,29 +479,7 @@ void computer()						      		// to draw the sender and receiver computers
 	glEnd();
 	glFlush();
 
-
-/*
-	glColor3f(0.3,0.6,0.8);//connectin wire
-	glBegin(GL_LINES);
-	glVertex2f(155,360);
-	glVertex2f(330,360);
-	glEnd();
 	glFlush();
-
-	//Rectangle to slowly be filled
-				
-	
-	glColor3f(0.0, 1.0, 0.0);
-	glBegin(GL_LINE_LOOP);
-	glVertex2f(140, 230);
-	glVertex2f(140, 300);
-	glVertex2f(320, 300);
-	glVertex2f(320, 230);
-	glEnd();
-*/
-
-	glFlush();
-
 }
 
 void window_prog_sender1_both(float a)
@@ -642,10 +620,8 @@ void print_data()
 
 void idle()
 {
-	if(height1 <= 70 && height1 >= 0){
-		
-		print_data();
-	
+	if(height1 <= 70 && height1 >= 0)
+	{       		
 		progress1++;
 		progress2++;
 
@@ -700,16 +676,7 @@ void idle()
 	
 		px = 107.5;
 		py = 190;
-	}
-/*
-		else if(progress1 + progress2 == 280)
-		{
-			height1 = 35;
-			height2 = 35;
-			progress1 = 0;
-			progress2 = 0;
-		}
-*/				
+	}			
 		count ++;
 	}
 	

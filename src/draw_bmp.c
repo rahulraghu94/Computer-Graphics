@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
 	
         glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
         glutInitWindowSize(HEIGHT, WIDTH);
-        glutCreateWindow("Test Texture???");
+        glutCreateWindow("TCP AONGESTION AVOIDANCE");
         glutDisplayFunc(display);
 	glutKeyboardFunc(my_key);
         glEnable(GL_DEPTH_TEST);

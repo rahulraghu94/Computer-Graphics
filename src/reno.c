@@ -8,11 +8,11 @@ void *currentfont;
 
 void *fonts[]=
 {
-GLUT_BITMAP_9_BY_15,
-GLUT_BITMAP_TIMES_ROMAN_10,
-GLUT_BITMAP_TIMES_ROMAN_24,
-GLUT_BITMAP_HELVETICA_18,
-GLUT_BITMAP_HELVETICA_12
+	GLUT_BITMAP_9_BY_15,
+	GLUT_BITMAP_TIMES_ROMAN_10,
+	GLUT_BITMAP_TIMES_ROMAN_24,
+	GLUT_BITMAP_HELVETICA_18,
+	GLUT_BITMAP_HELVETICA_12
 };
 
 static int progress = 0;
@@ -477,28 +477,6 @@ void computer()									// to draw the sender and receiver computers
 	glVertex2f(395,322-130);
 	glVertex2f(387,350-130);
 	glEnd();
-	glFlush();
-
-
-/*
-	glColor3f(0.3,0.6,0.8);//connectin wire
-	glBegin(GL_LINES);
-	glVertex2f(155,360);
-	glVertex2f(330,360);
-	glEnd();
-	glFlush();
-
-	//Rectangle to slowly be filled
-				
-	
-	glColor3f(0.0, 1.0, 0.0);
-	glBegin(GL_LINE_LOOP);
-	glVertex2f(140, 230);
-	glVertex2f(140, 300);
-	glVertex2f(320, 300);
-	glVertex2f(320, 230);
-	glEnd();
-*/
 
 	glFlush();
 
@@ -693,42 +671,7 @@ void display()
 	glPopMatrix();
 	glFlush();
 }
-/*
-void display_reno(void)
-{
-	int i, fin_count = 0;
 
-	glClear(GL_COLOR_BUFFER_BIT);
-	computer();
-	glFlush();
-
-	for(i = 0 ; i <= 140; i++)
-	{
-		window_prog_sender1_reno(i/2);
-		window_prog_sender2_reno(i/2);
-		if(i == 139)
-		{
-			i = 70;
-			fin_count++;
-			printf("%d", fin_count);
-			fflush(NULL);
-			blackify();
-		}
-		fill_rect1_reno(i);
-		fill_rect2_reno(i);
-		usleep(20000);
-		//fin_count++;
-		glFlush();
-
-		if(fin_count == 20) {
-			//usleep(2000000);
-			//exit(0);
-			return ;
-		}
-	}
-	glFlush();
-}
-*/
 int main(int argc, char *argv[])
 {
 	glutInit(&argc,argv);

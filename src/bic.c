@@ -9,11 +9,11 @@ static int progress_check = 0;
 
 void *fonts_bic[]=
 {
-GLUT_BITMAP_9_BY_15,
-GLUT_BITMAP_TIMES_ROMAN_10,
-GLUT_BITMAP_TIMES_ROMAN_24,
-GLUT_BITMAP_HELVETICA_18,
-GLUT_BITMAP_HELVETICA_12
+	GLUT_BITMAP_9_BY_15,
+	GLUT_BITMAP_TIMES_ROMAN_10,
+	GLUT_BITMAP_TIMES_ROMAN_24,
+	GLUT_BITMAP_HELVETICA_18,
+	GLUT_BITMAP_HELVETICA_12
 };
 
 void myKey(unsigned char key, int x, int y)
@@ -39,16 +39,7 @@ void drawstring_bic(float x,float y,float z,const char *string)
 		glutBitmapCharacter(currentfont,*c);
 	}
 }
-/*
-void myInit()
-{
-	glClearColor(1.0,1.0,1.0,0.0);
-	gluOrtho2D(0.0,500.0,0.0,500.0);
-	glMatrixMode(GL_PROJECTION);
-}
-*/
-void computer()									// to draw the sender and receiver computers
-{
+void computer()								     {
 
 	glColor3f(0.0f,0.0f,0.0f);
 	setFont_bic(GLUT_BITMAP_HELVETICA_18);
@@ -474,27 +465,6 @@ void computer()									// to draw the sender and receiver computers
 	glVertex2f(387,350-130);
 	glEnd();
 	glFlush();
-
-
-/*
-	glColor3f(0.3,0.6,0.8);//connectin wire
-	glBegin(GL_LINES);
-	glVertex2f(155,360);
-	glVertex2f(330,360);
-	glEnd();
-	glFlush();
-
-	//Rectangle to slowly be filled
-				
-	
-	glColor3f(0.0, 1.0, 0.0);
-	glBegin(GL_LINE_LOOP);
-	glVertex2f(140, 230);
-	glVertex2f(140, 300);
-	glVertex2f(320, 300);
-	glVertex2f(320, 230);
-	glEnd();
-*/
 
 	glFlush();
 

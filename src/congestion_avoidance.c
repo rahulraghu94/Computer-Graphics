@@ -77,19 +77,19 @@ void disp_data()
 	switch (page)
 	{
 	case 1:
-		system("./draw ~/Project_final/res/a.bmp");
+		system("./src/draw_bmp.o ~/Project_final/res/a.bmp");
 		break;
 
 	case 2:
-		system("./draw ~/Project_final/res/2.png");
+		system("./src/draw_bmp.o ~/Project_final/res/2.png");
 		break;
 
 	case 3:
-		system("./draw ~/Project_final/res/3.png");
+		system("./src/draw_bmp.o ~/Project_final/res/3.png");
 		break;
 
 	case 4:
-		system("./draw 4.png"); //Image left to upload
+		system("./src/draw_bmp.o 4.png"); //Image left to upload
 		break;
 		
 	}
@@ -103,15 +103,15 @@ void animate_buff()
 		//do something;
 
 	case 2:
-		system("./reno");
+		system("./src/reno.o");
 		break;
 
 	case 3:
-		system("./bic");
+		system("./src/bic.o");
 		break;
 
 	case 4:
-		system("./both");
+		system("./src/both.o");
 		break;
 		
 	}
@@ -370,17 +370,6 @@ void ButtonDraw(Button *b)
 	}
 }
 
-void reshape (int w, int h)
-{
-   glViewport (0, 0, (GLsizei) w, (GLsizei) h); 
-   glMatrixMode (GL_PROJECTION);
-   glLoadIdentity ();
-   gluPerspective(60.0, (GLfloat) w/(GLfloat) h, 1.0, 20.0);
-   glMatrixMode(GL_MODELVIEW);
-   glLoadIdentity();
-   gluLookAt (0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-}
-
 void Init()
 {
 	glEnable(GL_LIGHT0);
@@ -390,8 +379,20 @@ void Init()
 void draw_main()
 {
 	char s[] = "TCP Congestion Avoidance Algorithms";
+	char t[] = "Rahul J Raghunath";
+	char u[] = "Sanheeta Shankar";
+	char v[] = "1BY12CS046";
+	char w[] = "1BY12CS064";
+	char x[] = "BMS Institute of Technoogy and Management";
+	
 	glColor3f (0.258824, 0.435294, 0.258824);
-	Font(GLUT_BITMAP_TIMES_ROMAN_24, s, 450, 300);
+	Font(GLUT_BITMAP_TIMES_ROMAN_24, s, 450, 150);
+	Font(GLUT_BITMAP_HELVETICA_18, t, 150, 200);
+	Font(GLUT_BITMAP_HELVETICA_18, u, 1000, 200);
+	Font(GLUT_BITMAP_HELVETICA_18, v, 160, 240);
+	Font(GLUT_BITMAP_HELVETICA_18, w, 1010, 240);
+	Font(GLUT_BITMAP_TIMES_ROMAN_24, x, 410, 260);
+	
 	glFlush();
 	glClearColor(1.0, 1.0, 1.0, 0.0);
 	ButtonDraw(&MyButton1);
@@ -408,7 +409,7 @@ void draw_tcp()
 	Font(GLUT_BITMAP_TIMES_ROMAN_24, s, 450, 300);
 	ButtonDraw(&my_exit);
 	ButtonDraw(&disp_data_img);
-	ButtonDraw(&animate);
+	//ButtonDraw(&animate);
 	glFlush();	
 }
 
