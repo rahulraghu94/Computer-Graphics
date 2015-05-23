@@ -89,7 +89,7 @@ void disp_data()
 		break;
 
 	case 4:
-		system("./src/draw_bmp.o 4.png"); //Image left to upload
+		system("./src/draw_bmp.o ~/Project_final/res/4.bmp"); //Image left to upload
 		break;
 		
 	}
